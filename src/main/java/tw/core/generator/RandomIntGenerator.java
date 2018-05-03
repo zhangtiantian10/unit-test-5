@@ -8,8 +8,10 @@ import java.util.Set;
  * Created by jxzhong on 2017/5/17.
  */
 public class RandomIntGenerator {
+    private Random random;
 
-    public RandomIntGenerator() {
+    public RandomIntGenerator(Random random) {
+        this.random = random;
     }
 
     public String generateNums(Integer digitmax, Integer numbersOfNeed) {
@@ -18,10 +20,9 @@ public class RandomIntGenerator {
             throw new IllegalArgumentException("Can't ask for more numbers than are available");
         }
 
-        Random rng = new Random();
         Set<String> generated = new LinkedHashSet<>();
         while (generated.size() < numbersOfNeed) {
-            Integer next = rng.nextInt(digitmax);
+            Integer next = random.nextInt(digitmax);
             generated.add(next.toString());
         }
         return String.join(" ", generated);
